@@ -1,0 +1,20 @@
+name: ${name}
+description: Make every block you touch turn into whatever you configure!
+authors:
+  - srnyx
+website: https://srnyx.xyz
+
+main: xyz.srnyx.midastouch.MidasTouch
+version: ${version}
+
+commands:
+  midas:
+    description: Main command for Midas Touch
+    aliases:
+      - mt
+      - midastouch
+    permission: midas.command
+
+permissions:
+  midas.command:
+    description: Allows the player to use /midas
