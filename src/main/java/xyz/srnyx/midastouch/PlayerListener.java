@@ -16,11 +16,11 @@ import org.jetbrains.annotations.NotNull;
 import xyz.srnyx.annoyingapi.AnnoyingListener;
 
 
-public class MidasListener implements AnnoyingListener {
+public class PlayerListener implements AnnoyingListener {
     @NotNull private final MidasTouch plugin;
 
     @Contract(pure = true)
-    public MidasListener(@NotNull MidasTouch plugin) {
+    public PlayerListener(@NotNull MidasTouch plugin) {
         this.plugin = plugin;
     }
 
