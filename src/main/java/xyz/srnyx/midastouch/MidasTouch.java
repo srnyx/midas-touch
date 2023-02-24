@@ -15,12 +15,13 @@ import java.util.Set;
 public class MidasTouch extends AnnoyingPlugin {
     @NotNull public Material material = Material.GOLD_BLOCK;
     @NotNull public Set<Material> blacklist = new HashSet<>();
+    public boolean click = true;
 
     public MidasTouch() {
         super();
         reload();
         options.commandsToRegister.add(new MidasCommand(this));
-        options.listenersToRegister.add(new MoveListener(this));
+        options.listenersToRegister.add(new PlayerListener(this));
     }
 
     @Override
@@ -41,5 +42,8 @@ public class MidasTouch extends AnnoyingPlugin {
             final Material materialConfig = Material.getMaterial(materialString);
             if (materialConfig != null) blacklist.add(materialConfig);
         }
+
+        // click
+        this.click = config.getBoolean("click");
     }
 }

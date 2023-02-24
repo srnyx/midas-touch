@@ -6,6 +6,7 @@ website: https://srnyx.xyz
 
 main: xyz.srnyx.midastouch.MidasTouch
 version: ${version}
+api-version: 1.13
 
 commands:
   midas:
