@@ -2,6 +2,8 @@
 
 Every block you touch (walk on) turns to whatever block you configure! You can also set a blacklist of blocks that won't be affected.
 
+**ChatGPT:** Midas Touch is a Minecraft plugin that lets players transform every block they step on into a different block selected by the server admin via a config file. It's a fun and unique addition to any server, offering players a new way to interact with their Minecraft world. With its customizable features, players can enjoy a personalized gameplay experience that is both entertaining and engaging.
+
 - **🐛 Bugs / 💡 Suggestions:** Please [open an issue](https://github.com/srnyx/midas-touch/issues/new/choose) to report a bug or suggest an idea
 - **🆘 Support:** Please [join the Discord](https://srnyx.xyz/discord) to get support
 
