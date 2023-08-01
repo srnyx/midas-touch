@@ -1,10 +1,10 @@
 name: ${name}
-description: Make every block you touch turn into whatever you configure!
+description: ${description}
 authors:
   - srnyx
-website: https://srnyx.xyz
+website: https://srnyx.com
 
-main: xyz.srnyx.midastouch.MidasTouch
+main: ${group}.midastouch.MidasTouch
 version: ${version}
 api-version: 1.13
 

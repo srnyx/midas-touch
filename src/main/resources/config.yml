@@ -1,7 +1,11 @@
 # The block to convert to
 block: GOLDEN_BLOCK
 
+# Whether to convert blocks when left/right-clicking blocks
+click: true
+
 # Blocks to NOT convert
+# List: https://helpch.at/docs/MC_VERSION/org/bukkit/Material.html
 blacklist:
   - AIR
   - CAVE_AIR
@@ -18,6 +22,3 @@ blacklist:
   - REPEATING_COMMAND_BLOCK
   - CHAIN_COMMAND_BLOCK
   - SPAWNER
-
-# Whether to convert blocks when left/right-clicking blocks
-click: true

@@ -1,10 +1,13 @@
 package xyz.srnyx.midastouch;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 
 import org.jetbrains.annotations.NotNull;
 
 import xyz.srnyx.annoyingapi.AnnoyingPlugin;
+import xyz.srnyx.annoyingapi.PluginPlatform;
+import xyz.srnyx.annoyingapi.data.EntityData;
 import xyz.srnyx.annoyingapi.file.AnnoyingResource;
 
 import java.util.HashSet;
@@ -18,10 +21,17 @@ public class MidasTouch extends AnnoyingPlugin {
     public boolean click = true;
 
     public MidasTouch() {
-        super();
+        options
+                .pluginOptions(pluginOptions -> pluginOptions.updatePlatforms(
+                        PluginPlatform.modrinth("midas-touch"),
+                        PluginPlatform.hangar(this, "srnyx"),
+                        PluginPlatform.spigot("109422")))
+                .bStatsOptions(bStatsOptions -> bStatsOptions.id(18877))
+                .registrationOptions.automaticRegistration.packages(
+                        "xyz.srnyx.midastouch.commands",
+                        "xyz.srnyx.midastouch.listeners");
+
         reload();
-        options.commandsToRegister.add(new MidasCommand(this));
-        options.listenersToRegister.add(new PlayerListener(this));
     }
 
     @Override
@@ -31,19 +41,23 @@ public class MidasTouch extends AnnoyingPlugin {
         // material
         final String blockString = config.getString("block");
         if (blockString != null) {
-            final Material blockConfig = Material.getMaterial(blockString);
-            if (blockConfig != null) this.material = blockConfig;
+            final Material blockConfig = Material.matchMaterial(blockString);
+            if (blockConfig != null) material = blockConfig;
         }
+
+        // click
+        click = config.getBoolean("click");
 
         // blacklist
         blacklist.clear();
         final List<String> blacklistList = config.getStringList("blacklist");
         if (blacklistList != null) for (final String materialString : blacklistList) {
-            final Material materialConfig = Material.getMaterial(materialString);
+            final Material materialConfig = Material.matchMaterial(materialString);
             if (materialConfig != null) blacklist.add(materialConfig);
         }
+    }
 
-        // click
-        this.click = config.getBoolean("click");
+    public boolean isEnabled(@NotNull Player player) {
+        return new EntityData(this, player).has("midas_touch");
     }
 }
