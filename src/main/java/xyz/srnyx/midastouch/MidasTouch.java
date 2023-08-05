@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class MidasTouch extends AnnoyingPlugin {
     @NotNull public Material material = Material.GOLD_BLOCK;
-    @NotNull public Set<Material> blacklist = new HashSet<>();
+    @NotNull public final Set<Material> blacklist = new HashSet<>();
     public boolean click = true;
 
     public MidasTouch() {

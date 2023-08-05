@@ -8,5 +8,5 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-setupAnnoyingAPI("4.1.0", "xyz.srnyx", "1.0.0", "Make every block you touch turn into whatever you configure!")
+setupAnnoyingAPI("4.1.0", "xyz.srnyx", "2.0.0", "Make every block you touch turn into whatever you configure!")
 spigotAPI("1.8.8")
