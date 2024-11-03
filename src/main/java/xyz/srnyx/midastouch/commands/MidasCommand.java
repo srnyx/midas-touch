@@ -1,6 +1,6 @@
 package xyz.srnyx.midastouch.commands;
 
-import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import org.jetbrains.annotations.NotNull;
@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import xyz.srnyx.annoyingapi.command.AnnoyingCommand;
 import xyz.srnyx.annoyingapi.command.AnnoyingSender;
-import xyz.srnyx.annoyingapi.data.EntityData;
+import xyz.srnyx.annoyingapi.data.StringData;
 import xyz.srnyx.annoyingapi.message.AnnoyingMessage;
 import xyz.srnyx.annoyingapi.message.DefaultReplaceType;
 import xyz.srnyx.annoyingapi.utility.BukkitUtility;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 
-public class MidasCommand implements AnnoyingCommand {
+public class MidasCommand extends AnnoyingCommand {
     @NotNull private final MidasTouch plugin;
 
     public MidasCommand(@NotNull MidasTouch plugin) {
@@ -38,17 +38,17 @@ public class MidasCommand implements AnnoyingCommand {
 
     @Override
     public void onCommand(@NotNull AnnoyingSender sender) {
-        final String[] args = sender.args;
+        final int argsLength = sender.args.length;
 
         // No arguments
-        if (args.length == 0 && sender.checkPlayer()) {
+        if (argsLength == 0 && sender.checkPlayer()) {
             final Player player = sender.getPlayer();
             toggle(player, !plugin.isEnabled(player), sender);
             return;
         }
 
         // reload
-        if (args.length == 1 && sender.argEquals(0, "reload")) {
+        if (argsLength == 1 && sender.argEquals(0, "reload")) {
             plugin.reloadPlugin();
             new AnnoyingMessage(plugin, "command.reload").send(sender);
             return;
@@ -61,13 +61,10 @@ public class MidasCommand implements AnnoyingCommand {
         }
 
         // Get player
-        final Player player;
-        if (args.length == 2) {
-            player = Bukkit.getPlayer(args[1]);
-            if (player == null) {
-                sender.invalidArgument(args[1]);
-                return;
-            }
+        final OfflinePlayer player;
+        if (argsLength == 2) {
+            player = sender.getArgumentOptionalFlat(1, BukkitUtility::getOfflinePlayer).orElse(null);
+            if (player == null) return;
         } else {
             if (!sender.checkPlayer()) return;
             player = sender.getPlayer();
@@ -90,14 +87,9 @@ public class MidasCommand implements AnnoyingCommand {
         return null;
     }
 
-    private void toggle(@NotNull Player player, boolean state, @NotNull AnnoyingSender sender) {
+    private void toggle(@NotNull OfflinePlayer player, boolean state, @NotNull AnnoyingSender sender) {
         // Toggle
-        final EntityData data = new EntityData(plugin, player);
-        if (state) {
-            data.set("midas_touch", true);
-        } else {
-            data.remove("midas_touch");
-        }
+        new StringData(plugin, player).set(MidasTouch.KEY, state);
 
         // Message
         if (sender.cmdSender.equals(player)) {

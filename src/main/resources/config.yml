@@ -1,24 +1,28 @@
 # The block to convert to
-block: GOLDEN_BLOCK
+block: GOLDEN_BLOCK # https://srnyx.com/docs/spigot/org/bukkit/Material.html
 
 # Whether to convert blocks when left/right-clicking blocks
 click: true
 
 # Blocks to NOT convert
-# List: https://helpch.at/docs/MC_VERSION/org/bukkit/Material.html
-blacklist:
-  - AIR
-  - CAVE_AIR
-  - VOID_AIR
-  - WATER
-  - LAVA
-  - BARRIER
-  - BEDROCK
-  - END_PORTAL
-  - END_PORTAL_FRAME
-  - END_GATEWAY
-  - STRUCTURE_BLOCK
-  - COMMAND_BLOCK
-  - REPEATING_COMMAND_BLOCK
-  - CHAIN_COMMAND_BLOCK
-  - SPAWNER
+blocks-blacklist:
+  # https://srnyx.com/docs/spigot/org/bukkit/Material.html
+  list:
+    - AIR
+    - CAVE_AIR
+    - VOID_AIR
+    - WATER
+    - LAVA
+    - BARRIER
+    - BEDROCK
+    - END_PORTAL
+    - END_PORTAL_FRAME
+    - END_GATEWAY
+    - STRUCTURE_BLOCK
+    - COMMAND_BLOCK
+    - REPEATING_COMMAND_BLOCK
+    - CHAIN_COMMAND_BLOCK
+    - SPAWNER
+
+  # Whether to treat the list above as a whitelist, meaning only the blocks in the list will be converted
+  act-as-whitelist: false
