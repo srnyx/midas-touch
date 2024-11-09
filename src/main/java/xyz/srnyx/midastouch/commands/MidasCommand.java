@@ -89,7 +89,7 @@ public class MidasCommand extends AnnoyingCommand {
 
     private void toggle(@NotNull OfflinePlayer player, boolean state, @NotNull AnnoyingSender sender) {
         // Toggle
-        new StringData(plugin, player).set(MidasTouch.KEY, state);
+        new StringData(plugin, player).set(MidasTouch.KEY, state ? true : null);
 
         // Message
         if (sender.cmdSender.equals(player)) {
