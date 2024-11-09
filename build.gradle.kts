@@ -8,5 +8,5 @@ plugins {
     id("com.gradleup.shadow") version "8.3.5"
 }
 
-setupAnnoyingAPI("5.1.3", "xyz.srnyx", "2.1.0", "Make every block you touch turn into whatever you configure!")
+setupAnnoyingAPI("5.1.3", "xyz.srnyx", "2.1.1", "Make every block you touch turn into whatever you configure!")
 spigotAPI("1.8.8")
